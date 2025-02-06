@@ -22,6 +22,7 @@ namespace Shop.Shared.Services
         public ProductService(HttpClient httpClient, IOptions<AppSettings> appSettings)
         {
             _httpClient = httpClient;
+            _appSettings = appSettings.Value;
         }
 
         public async Task<ServiceResponse<Product>> CreateProductAsync(Product newProduct)
