@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Shop.API.Models;
+
 namespace Shop.API
 {
     public class Program
@@ -13,6 +16,13 @@ namespace Shop.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //Microsoft.EntityFrameworkCore.SqlServer
+            builder.Services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
 
             var app = builder.Build();
 
