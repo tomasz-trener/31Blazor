@@ -9,7 +9,7 @@
 }
 else
 {
-    <EditForm Model="product">
+    <EditForm Model="product" OnValidSubmit="HandleValidSubmit">
         <div class="form-group">
             <label for="Title">Title</label>
             <InputText class="form-control" id="Title" @bind-Value="product.Title" />
@@ -30,13 +30,15 @@ else
             <label for="Description">Description</label>
             <InputTextArea class="form-control" id="Description" @bind-Value="product.Description" />
         </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
     </EditForm>
 }
 
 @code {
     [Parameter]
     public int Id { get; set; }
-   
+
     private Product product;
     private string message = "Loading product...";
 
@@ -47,5 +49,10 @@ else
             product = response.Data;
         else
             message = response.Message;
+    }
+
+    private async Task HandleValidSubmit()
+    {
+
     }
 }
