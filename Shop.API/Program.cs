@@ -26,6 +26,18 @@ namespace Shop.API
             });
             builder.Services.AddScoped<IProductService, Shop.API.Services.ProductService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyOrigin();
+                });
+            });
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -36,6 +48,9 @@ namespace Shop.API
             }
 
             app.UseHttpsRedirection();
+
+
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
