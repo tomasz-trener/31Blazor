@@ -1,4 +1,5 @@
-﻿using Shop.Shared.Entity;
+﻿using D13P06Shop.Shared;
+using Shop.Shared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
