@@ -24,7 +24,7 @@ namespace BlazorWASM.Client
 
             //Microsoft.Extensions.Http
             builder.Services.AddHttpClient<IProductService, ProductService>(c => c.BaseAddress = uriBuilder.Uri);
-
+            builder.Services.Configure<AppSettings>(appSettings);
             await builder.Build().RunAsync();
         }
     }
