@@ -1,7 +1,20 @@
-﻿
+﻿@page "/calculator"
 
 <h3>Calculator</h3>
 
-@code {
+<div>
+    <input type="number" value="@number1" />
+    <input type="number" value="@number2" />
+    <button @onclick=Sum>Add</button>
+</div>
+ 
 
+@code {
+    double number1 = 5;
+    double number2 = 6;
+    double? wynik = null;
+    void Sum()
+    {
+        wynik = number1 + number2;
+    }
 }
