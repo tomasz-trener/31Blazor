@@ -1,6 +1,7 @@
 ﻿@page "/products/productsList"
 
 @inject IProductService ProductService
+@inject NavigationManager NavigationManager
 
 <h3>ProductsList</h3>
 
@@ -33,6 +34,7 @@ else
                     <td>@product.Price</td>
                     <td>@product.ReleaseDate</td>
                     <td>@product.Description</td>
+                    <td><button class="btn btn-primary" @onclick="()=>GoToEdit(product.Id)">Edit</button></td>
                 </tr>
             }
         </tbody>
@@ -54,5 +56,10 @@ else
         {
             message = response.Message;
         }
+    }
+
+    private void GoToEdit(int id)
+    {
+        NavigationManager.NavigateTo($"products/editProduct/{id}");
     }
 }
