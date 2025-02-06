@@ -20,7 +20,7 @@ namespace Shop.API.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
             var result = await _productService.GetProductsAsync();
 
             if (result.Success)
