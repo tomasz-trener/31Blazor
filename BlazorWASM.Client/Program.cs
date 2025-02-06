@@ -22,7 +22,7 @@ namespace BlazorWASM.Client
                 Path = appSettingsSection.ProductEndpoint.BaseUrl,
             };
 
-            //Microsoft.Extensions.Http
+            //Microsoft.Extensions.Http 
             builder.Services.AddHttpClient<IProductService, ProductService>(c => c.BaseAddress = uriBuilder.Uri);
             builder.Services.Configure<AppSettings>(appSettings);
             await builder.Build().RunAsync();
