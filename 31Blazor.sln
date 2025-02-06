@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.API", "Shop.API\Shop.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Shared", "Shop.Shared\Shop.Shared.csproj", "{7DCA449D-19E9-442E-8407-5F5C1162E2E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.DataSeeder", "Shop.DataSeeder\Shop.DataSeeder.csproj", "{F75122B9-17A4-4ACB-ACB2-512BA6F24135}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7DCA449D-19E9-442E-8407-5F5C1162E2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DCA449D-19E9-442E-8407-5F5C1162E2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DCA449D-19E9-442E-8407-5F5C1162E2E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75122B9-17A4-4ACB-ACB2-512BA6F24135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75122B9-17A4-4ACB-ACB2-512BA6F24135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75122B9-17A4-4ACB-ACB2-512BA6F24135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75122B9-17A4-4ACB-ACB2-512BA6F24135}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

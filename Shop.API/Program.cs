@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Shop.API.Models;
+using Shop.API.Services;
+using Shop.Shared.Services;
 
 namespace Shop.API
 {
@@ -22,7 +24,7 @@ namespace Shop.API
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
-
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
