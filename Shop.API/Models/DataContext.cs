@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shop.DataSeeder;
 using Shop.Shared.Entity;
 
 namespace Shop.API.Models
@@ -19,7 +20,11 @@ namespace Shop.API.Models
             modelBuilder.Entity<Product>()
              .Property(p => p.Barcode)
              .IsRequired()
-             .HasMaxLength(12);      
+             .HasMaxLength(12);
+
+
+            modelBuilder.Entity<Product>()
+                .HasData(ProductDataSeeder.GenerateProductData());
         }
     }
 }
