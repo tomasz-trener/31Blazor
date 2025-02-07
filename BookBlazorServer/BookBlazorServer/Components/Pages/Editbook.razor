@@ -1,0 +1,35 @@
+﻿@page "/editbook"
+@page "/editbook/{Id:int}"
+@using BookBlazorServer.Entities
+@using BookBlazorServer.Services
+@inject IBookService BookService
+
+<h3>Editbook</h3>
+
+<EditForm Model="book" OnSubmit="HandleSubmit" FormName="editBook">
+    <label for="name">Name</label>
+    <InputText id="name" @bind-Value="book.Name"></InputText>
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+
+@code {
+    [SupplyParameterFromForm]
+    Book book { get; set; } = new Book() { Name = string.Empty };
+
+    [Parameter]
+    public int Id { get; set; }
+
+    async Task HandleSubmit()
+    {
+        await BookService.AddBookAsync(book);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            book = await BookService.GetBookById(Id);
+        }
+    }
+}

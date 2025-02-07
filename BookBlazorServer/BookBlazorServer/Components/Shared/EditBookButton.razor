@@ -1,0 +1,18 @@
+﻿@inject NavigationManager NavigationManager
+@* @rendermode InteractiveServer *@
+
+<button @onclick="EditBook" class="btn btn-primary">EditBook</button>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+
+    private void EditBook()
+    {
+        // NavigationManager.NavigateTo($"/Editbook/{Id}");
+        NavigationManager.NavigateTo($"/editBookClient/{Id}");
+        
+    }
+
+}

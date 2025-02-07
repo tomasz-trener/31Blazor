@@ -1,9 +1,13 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Shop.API.Models;
 using Shop.API.Services;
+using Shop.API.Services.AuthService;
 using Shop.Shared.Services;
- 
+using System.Text;
+
 namespace Shop.API
 {
     public class Program
@@ -25,6 +29,20 @@ namespace Shop.API
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddScoped<IProductService, Shop.API.Services.ProductService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            string token = builder.Configuration.GetSection("AppSettings:Token").Value;
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token))
+                    };
+                });
 
             builder.Services.AddCors(options =>
             {
@@ -52,6 +70,7 @@ namespace Shop.API
 
             app.UseCors("AllowAll");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

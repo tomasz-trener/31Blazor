@@ -1,0 +1,15 @@
+﻿@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+ 
+<button class="btn btn-primary" @onclick=AddBook>Add book</button>
+
+
+
+@code {
+    private void AddBook()
+    {
+        NavigationManager.NavigateTo("/editbook");
+    }
+}

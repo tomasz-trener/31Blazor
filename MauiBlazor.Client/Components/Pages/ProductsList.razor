@@ -1,0 +1,57 @@
+@page "/productList"
+@using MauiApp1
+@using Newtonsoft.Json
+
+@inject ProductViewModel MProductViewModel
+
+<h1>ProductList</h1>
+@if (MProductViewModel.Products == null)
+{
+    <p>error</p>
+}
+else
+{
+  
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Barcode</th>
+                <th>Release Date</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in MProductViewModel.Products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Title</td>
+                    <td>@product.Price</td>
+                    <td>@product.Barcode</td>
+                    <td>@product.ReleaseDate.ToShortDateString()</td>
+                    <td>
+                 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
+@code {
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await MProductViewModel.GetProductsAsync();
+
+        File.WriteAllText("c:\\dane\\products.json", JsonConvert.SerializeObject(MProductViewModel.Products));
+    }
+}

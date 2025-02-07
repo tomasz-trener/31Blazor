@@ -1,0 +1,49 @@
+﻿@page "/books2"
+@using BookBlazorServer.Components.Shared
+@using BookBlazorServer.Entities
+@using BookBlazorServer.Services
+
+@inject IBookService BookService
+@inject NavigationManager NavigationManager
+
+  @attribute [StreamRendering]
+@* @rendermode InteractiveServer
+ *@
+@*  @rendermode @(new InteractiveServerRenderMode(prerender:false))
+ *@
+
+
+@if (books == null)
+{
+    <span>Loading...</span>
+}
+else if (books.Count == 0)
+{
+    <span>No books...</span>
+}
+else
+{
+    <ul>
+        @foreach (var book in books)
+        {
+            <li>@book.Name <EditBookButton @rendermode="InteractiveServer" Id="book.Id"></EditBookButton> </li>
+        }
+    </ul>
+}
+
+ <CreateBookButton></CreateBookButton>
+
+@code {
+    List<Book>? books = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        books = await BookService.GetAllBooksAsync();
+    }
+
+    private void AddBook()
+    {
+        NavigationManager.NavigateTo("/editbook");
+    }
+
+}
